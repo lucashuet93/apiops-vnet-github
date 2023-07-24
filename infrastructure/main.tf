@@ -36,8 +36,8 @@ resource "azurerm_resource_group" "rg_prod" {
 
 resource "azurerm_api_management" "apim_prod" {
   name                = "${var.prefix}-apim-prod"
-  location            = azurerm_resource_group.rg_dev.location
-  resource_group_name = azurerm_resource_group.rg_dev.name
+  location            = azurerm_resource_group.rg_prod.location
+  resource_group_name = azurerm_resource_group.rg_prod.name
   publisher_name      = "Company"
   publisher_email     = "company@terraform.io"
   sku_name            = "Developer_1"
