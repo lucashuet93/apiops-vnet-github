@@ -1,0 +1,34 @@
+{
+  "properties": {
+    "backend": {
+      "request": {
+        "dataMasking": {
+          "queryParams": [
+            {
+              "mode": "Hide",
+              "value": "*"
+            }
+          ]
+        }
+      }
+    },
+    "frontend": {
+      "request": {
+        "dataMasking": {
+          "queryParams": [
+            {
+              "mode": "Hide",
+              "value": "*"
+            }
+          ]
+        }
+      }
+    },
+    "logClientIp": true,
+    "loggerId": "/subscriptions/5c01b9ab-7e48-4c36-b2c0-4eb091caac88/resourceGroups/lucasapiops-rg-dev/providers/Microsoft.ApiManagement/service/lucasapiops-apim-dev/loggers/azuremonitor",
+    "sampling": {
+      "percentage": 100,
+      "samplingType": "Fixed"
+    }
+  }
+}
