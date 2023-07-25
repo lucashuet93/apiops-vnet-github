@@ -14,7 +14,7 @@ Each deployed resource group that includes an APIM service should have a corresp
 
 `az ad sp create-for-rbac -n "apiopslab" --role Contributor --scopes /subscriptions/{subscription-id}/resourceGroups/{resource-group} --sdk-auth`
 
-Next, create a new environment with the following secrets, taking `API_MANAGEMENT_SERVICE_NAME` and `AZURE_RESOURCE_GROUP_NAME` values from the Portal and the rest from the returned JSON.
+Next, create a new environment with the following secrets, taking values from the returned JSON and from the terraform outputs.
 
 - `API_MANAGEMENT_SERVICE_NAME`
 - `AZURE_CLIENT_ID`
