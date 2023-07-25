@@ -1,8 +1,8 @@
 {
   "properties": {
     "approvalRequired": false,
-    "description": "A product I created in the dev instance.",
-    "displayName": "DevProduct",
+    "description": "A product I created in the dev APIM deployed inside a Vnet",
+    "displayName": "devProduct",
     "state": "published",
     "subscriptionRequired": true
   }
