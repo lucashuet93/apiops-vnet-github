@@ -1,8 +1,8 @@
 # API Ops in an Azure Virtual Network
 
-The POC demonstrates use of [API Ops](https://azure.github.io/apiops/apiops/0-labPrerequisites/) to deploy changes from dev to prod API Management instances that are hosted in separate Azure Virtual Networks.
+The accelerator demonstrates use of [API Ops](https://azure.github.io/apiops/apiops/0-labPrerequisites/) to deploy changes from a development to production API Management instance that are hosted in separate Azure Virtual Networks.
 
-Terraform is used to deploy the supporting infrastructure, including the API Management instances, and API Ops handles configuration promotion from the dev to prod environment.
+Terraform is used to deploy the supporting infrastructure, including the API Management instances, and API Ops handles configuration promotion from the development to production environment.
 
 ## Architecture
 
@@ -21,6 +21,7 @@ The API Ops tool does not require additional considerations be made for the VNet
 
 Navigate to the [infrastructure](./infrastructure/) folder and update the [terraform.tfvars](./infrastructure/terraform.tfvars) file with an Azure region and unique `prefix`. Apply the configuration:
 
+`terraform init`
 `terraform apply --var-file=terraform.tfvars`
 
 ## Create GitHub Environments
