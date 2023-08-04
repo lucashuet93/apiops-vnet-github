@@ -1,0 +1,31 @@
+{
+	"name": "API Ops Accelerator",
+	"image": "mcr.microsoft.com/devcontainers/base:bullseye",
+	"features": {
+		"ghcr.io/devcontainers/features/azure-cli:1": {
+			"installUsingPython": true,
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/terraform:1": {
+			"version": "latest",
+			"tflint": "0.47.0",
+			"terragrunt": "latest"
+		},
+		"ghcr.io/devcontainers-contrib/features/gh-cli:1": {
+			"version": "latest"
+		},
+		"ghcr.io/azure/azure-dev/azd:0": {
+			"version": "stable"
+		}
+	},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	"customizations": {
+		"vscode": {
+			"extensions": [
+			]
+		}
+	}
+}
