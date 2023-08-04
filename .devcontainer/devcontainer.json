@@ -25,6 +25,7 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
+				"hediet.vscode-drawio"
 			]
 		}
 	}

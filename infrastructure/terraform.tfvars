@@ -1,2 +1,2 @@
-location = "eastus"
-prefix   = "klndcklnsvlde"
+location = "westeurope"
+prefix   = "jhgfjhg"
