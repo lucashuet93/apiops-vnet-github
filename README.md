@@ -17,30 +17,38 @@ The API Ops tool does not require additional considerations be made for the VNet
 - [Terraform](https://www.terraform.io/downloads.html)
 - [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
 
+This repository comes with a [Dev Container](https://code.visualstudio.com/docs/devcontainers/containers) and all of the pre-requisites are already installed if you use it.
+
 ## Deploying the Infrastructure
 
-Navigate to the [infrastructure](./infrastructure/) folder and update the [terraform.tfvars](./infrastructure/terraform.tfvars) file with an Azure region and unique `prefix`. Next run the following from a terminal: -
+Make a copy of the `.env.example` and call it `.env`; then define an Azure region, unique `prefix` and your Azure Subscription Id. Next run the following from a terminal: -
 
-`make deploy`
+`make infra`
 
 ## Create GitHub Environments
 
-Each deployed resource group that includes an APIM service should have a corresponding GitHub Environment. Create a service principal with the contributor role for the dev resource group:
+Each deployed resource group that includes an APIM service should have a corresponding GitHub Environment. If your logged in Azure user is an Application Administrator in the tenant, the `make infra` step would have created an Enterprise Application and granted Contributor to each of the resource groups. 
+
+This is equivalent of running: -
 
 `az ad sp create-for-rbac -n "apiopslab" --role Contributor --scopes /subscriptions/{subscription-id}/resourceGroups/{resource-group} --sdk-auth`
 
-Next, navigate to the Settings blade in the Github repository and create a new environment called `dev` with the following secrets, taking values from the JSON returned from the `az` command and from the terraform outputs.
+After you have deployed the infrastructure, the `.env` will have been amended to include the settings that you need to configure GitHub Actions. Navigate to the Settings blade in the Github repository and create a new environment called `dev` with the following secrets, taking values from the environment file.
 
-- `API_MANAGEMENT_SERVICE_NAME`
 - `AZURE_CLIENT_ID`
 - `AZURE_CLIENT_SECRET`
-- `AZURE_RESOURCE_GROUP_NAME`
 - `AZURE_SUBSCRIPTION_ID`
 - `AZURE_TENANT_ID`
+- `API_MANAGEMENT_SERVICE_NAME` (Use `DEV_APIM_NAME`)
+- `AZURE_RESOURCE_GROUP_NAME` (Use `DEV_RESOURCE_GROUP_NAME`)
 
-Repeat for the prod resource group.
 
-## Update the dev APIM instance
+Create a new `prod` environment using the same settings but remembering to use the prod values
+
+- `API_MANAGEMENT_SERVICE_NAME` (Use `PROD_APIM_NAME`)
+- `AZURE_RESOURCE_GROUP_NAME` (Use `PROD_RESOURCE_GROUP_NAME`)
+
+## Update the development API Management instance
 
 Navigate to the [Azure Portal](https://portal.azure.com/) and find the dev APIM instance. Update the configuration in some way - add a product, an API, a named value, etc.
 

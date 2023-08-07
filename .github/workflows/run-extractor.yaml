@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       CONFIGURATION_YAML_PATH:
-        description: 'Choose Wether to extract all Apis or extract apis listed an extraction configuration file'     
+        description: 'Choose whether to extract all Apis or extract apis listed an extraction configuration file'     
         required: true
         type: choice
         options:
