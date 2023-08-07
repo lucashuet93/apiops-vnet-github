@@ -12,3 +12,8 @@ variable "environment" {
   type        = string
   description = "Normally dev or prod"
 }
+
+variable "service_principal_object_id" {
+  type        = string
+  description = "The Service Principal Object ID"
+}

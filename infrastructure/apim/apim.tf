@@ -4,6 +4,12 @@ resource "azurerm_resource_group" "rg" {
   location = var.location
 }
 
+resource "azurerm_role_assignment" "example" {
+  scope                = azurerm_resource_group.rg.id
+  role_definition_name = "Contributor"
+  principal_id         = var.service_principal_object_id
+}
+
 resource "azurerm_public_ip" "pip" {
   name                = "pip-${var.prefix}-${var.environment}"
   resource_group_name = azurerm_resource_group.rg.name
