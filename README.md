@@ -21,7 +21,7 @@ The API Ops tool does not require additional considerations be made for the VNet
 
 Navigate to the [infrastructure](./infrastructure/) folder and update the [terraform.tfvars](./infrastructure/terraform.tfvars) file with an Azure region and unique `prefix`. Next run the following from a terminal: -
 
-`make deploy`
+`make infrastructure`
 
 ## Create GitHub Environments
 
