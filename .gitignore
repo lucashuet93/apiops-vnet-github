@@ -1,3 +1,4 @@
 .env
 infrastructure/terraform_output.json
 infrastructure/terraform.env
+extract
