@@ -37,3 +37,10 @@ extract-prod: ## 📤 Export the development API Management instance
 		&& export API_MANAGEMENT_SERVICE_NAME=${PROD_APIM_NAME} \
 		&& export AZURE_RESOURCE_GROUP_NAME=${PROD_RESOURCE_GROUP_NAME} \
 		&& extractor
+
+publish-dev: ## 📤 Publish to the development API Management instance
+	@echo -e "\e[34m$@\e[0m" || true
+	@export API_MANAGEMENT_SERVICE_OUTPUT_FOLDER_PATH=apimartifacts \
+		&& export API_MANAGEMENT_SERVICE_NAME=${DEV_APIM_NAME} \
+		&& export AZURE_RESOURCE_GROUP_NAME=${DEV_RESOURCE_GROUP_NAME} \
+		&& publisher
