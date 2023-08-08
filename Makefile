@@ -23,3 +23,24 @@ infra: ## 🚀 Deploy the API Ops Infrastructure
 extract-env: ## ⚙️ Extract the environment variables from Terraform
 	@echo -e "\e[34m$@\e[0m" || true
 	@./scripts/json-to-env.sh < infrastructure/terraform_output.json > infrastructure/terraform.env
+
+extract-dev: ## 📤 Export the development API Management instance to a temp local folder
+	@echo -e "\e[34m$@\e[0m" || true
+	@export API_MANAGEMENT_SERVICE_OUTPUT_FOLDER_PATH=temp/dev \
+		&& export API_MANAGEMENT_SERVICE_NAME=${DEV_APIM_NAME} \
+		&& export AZURE_RESOURCE_GROUP_NAME=${DEV_RESOURCE_GROUP_NAME} \
+		&& extractor
+
+extract-prod: ## 📤 Export the development API Management instance to a temp local folder
+	@echo -e "\e[34m$@\e[0m" || true
+	@export API_MANAGEMENT_SERVICE_OUTPUT_FOLDER_PATH=temp/prod \
+		&& export API_MANAGEMENT_SERVICE_NAME=${PROD_APIM_NAME} \
+		&& export AZURE_RESOURCE_GROUP_NAME=${PROD_RESOURCE_GROUP_NAME} \
+		&& extractor
+
+publish-dev: ## 📤 Publish to the development API Management instance
+	@echo -e "\e[34m$@\e[0m" || true
+	@export API_MANAGEMENT_SERVICE_OUTPUT_FOLDER_PATH=apimartifacts \
+		&& export API_MANAGEMENT_SERVICE_NAME=${DEV_APIM_NAME} \
+		&& export AZURE_RESOURCE_GROUP_NAME=${DEV_RESOURCE_GROUP_NAME} \
+		&& publisher
