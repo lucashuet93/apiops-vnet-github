@@ -127,3 +127,33 @@ resource "azurerm_api_management" "apim" {
 
   depends_on = [azurerm_subnet_network_security_group_association.apim_subnet_nsg]
 }
+
+resource "azurerm_log_analytics_workspace" "log_analytics_workspace" {
+  name                = "la-${var.prefix}-${var.environment}"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  sku                 = "PerGB2018"
+  retention_in_days   = 30
+}
+
+resource "azurerm_application_insights" "application_insights" {
+  name                = "ai-${var.prefix}-${var.environment}"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  workspace_id        = azurerm_log_analytics_workspace.log_analytics_workspace.id
+  application_type    = "web"
+}
+
+resource "azurerm_monitor_diagnostic_setting" "apim_diagnostic_setting" {
+  name                       = "apimdiagnosticsetting"
+  target_resource_id         = azurerm_api_management.apim.id
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.log_analytics_workspace.id
+
+  enabled_log {
+    category_group = "allLogs"
+  }
+
+  metric {
+    category = "AllMetrics"
+  }
+}
