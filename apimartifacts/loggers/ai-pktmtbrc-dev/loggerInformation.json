@@ -1,0 +1,11 @@
+{
+  "properties": {
+    "credentials": {
+      "instrumentationKey": "{{Logger-Credentials--64d40fa5463461134c6b2e46}}"
+    },
+    "description": "A logger originally created in the dev instance",
+    "isBuffered": true,
+    "loggerType": "applicationInsights",
+    "resourceId": "/subscriptions/5c01b9ab-7e48-4c36-b2c0-4eb091caac88/resourceGroups/rg-pktmtbrc-dev/providers/Microsoft.Insights/components/ai-pktmtbrc-dev"
+  }
+}
