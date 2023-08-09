@@ -6,7 +6,9 @@ namedValues:
       keyVault:
         secretIdentifier: "https://kv-pktmtbrc-prod.vault.azure.net/secrets/kvs-aikey"
 loggers:
-    - name: ai-pktmtbrc-dev
+    # the name of the logger has to match the folder name in apimartifacts/loggers. 
+    # the folder name originally matches the dev instance's extracted logger name, but was renamed to a generic one
+    - name: applicationinsights
       properties:
         resourceId: "/subscriptions/5c01b9ab-7e48-4c36-b2c0-4eb091caac88/resourceGroups/rg-pktmtbrc-prod/providers/Microsoft.Insights/components/ai-pktmtbrc-prod"
         credentials:
@@ -15,4 +17,5 @@ diagnostics:
    - name: applicationinsights
      properties:
        verbosity: Error
-       loggerId: "/subscriptions/5c01b9ab-7e48-4c36-b2c0-4eb091caac88/resourceGroups/rg-pktmtbrc-prod/providers/Microsoft.ApiManagement/service/apim-pktmtbrc-prod/loggers/ai-pktmtbrc-prod"
+       # loggerId must match the name of the logger above, in this case applicationinsights
+       loggerId: "/subscriptions/5c01b9ab-7e48-4c36-b2c0-4eb091caac88/resourceGroups/rg-pktmtbrc-prod/providers/Microsoft.ApiManagement/service/apim-pktmtbrc-prod/loggers/applicationinsights"
