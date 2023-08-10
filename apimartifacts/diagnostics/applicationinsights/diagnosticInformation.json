@@ -27,7 +27,7 @@
     },
     "httpCorrelationProtocol": "Legacy",
     "logClientIp": true,
-    "loggerId": "/subscriptions/5c01b9ab-7e48-4c36-b2c0-4eb091caac88/resourceGroups/rg-pktmtbrc-dev/providers/Microsoft.ApiManagement/service/apim-pktmtbrc-dev/loggers/applicationinsights",
+    "loggerId": "/subscriptions/{SUBSCRIPTION_ID}/resourceGroups/rg-pktmtbrc-dev/providers/Microsoft.ApiManagement/service/apim-pktmtbrc-dev/loggers/applicationinsights",
     "sampling": {
       "percentage": 100,
       "samplingType": "Fixed"
