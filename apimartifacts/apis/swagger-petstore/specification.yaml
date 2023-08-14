@@ -10,8 +10,8 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   version: '1.0'
 servers:
-  - url: http://klndcklnsvlde-apim-dev.azure-api.net
-  - url: https://klndcklnsvlde-apim-dev.azure-api.net
+  - url: http://apim-pktmtbrc-dev.azure-api.net
+  - url: https://apim-pktmtbrc-dev.azure-api.net
 paths:
   '/pet/{petId}/uploadImage':
     post:

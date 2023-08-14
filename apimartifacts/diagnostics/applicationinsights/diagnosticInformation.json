@@ -1,5 +1,6 @@
 {
   "properties": {
+    "alwaysLog": "allErrors",
     "backend": {
       "request": {
         "dataMasking": {
@@ -24,8 +25,9 @@
         }
       }
     },
+    "httpCorrelationProtocol": "Legacy",
     "logClientIp": true,
-    "loggerId": "/subscriptions/{SUBSCRIPTION_ID}/resourceGroups/rg-pktmtbrc-dev/providers/Microsoft.ApiManagement/service/apim-pktmtbrc-dev/loggers/azuremonitor",
+    "loggerId": "/subscriptions/{SUBSCRIPTION_ID}/resourceGroups/rg-pktmtbrc-dev/providers/Microsoft.ApiManagement/service/apim-pktmtbrc-dev/loggers/applicationinsights",
     "sampling": {
       "percentage": 100,
       "samplingType": "Fixed"
