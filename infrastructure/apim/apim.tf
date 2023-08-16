@@ -25,23 +25,19 @@ resource "azurerm_api_management" "apim" {
 }
 
 resource "azurerm_log_analytics_workspace" "log_analytics_workspace" {
-  name                       = "la-${var.prefix}-${var.environment}"
-  location                   = azurerm_resource_group.rg.location
-  resource_group_name        = azurerm_resource_group.rg.name
-  sku                        = "PerGB2018"
-  retention_in_days          = 30
-  internet_ingestion_enabled = false
-  internet_query_enabled     = false
+  name                = "la-${var.prefix}-${var.environment}"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  sku                 = "PerGB2018"
+  retention_in_days   = 30
 }
 
 resource "azurerm_application_insights" "application_insights" {
-  name                       = "ai-${var.prefix}-${var.environment}"
-  location                   = azurerm_resource_group.rg.location
-  resource_group_name        = azurerm_resource_group.rg.name
-  workspace_id               = azurerm_log_analytics_workspace.log_analytics_workspace.id
-  application_type           = "web"
-  internet_ingestion_enabled = false
-  internet_query_enabled     = false
+  name                = "ai-${var.prefix}-${var.environment}"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  workspace_id        = azurerm_log_analytics_workspace.log_analytics_workspace.id
+  application_type    = "web"
 }
 
 resource "azurerm_monitor_diagnostic_setting" "apim_diagnostic_setting" {
