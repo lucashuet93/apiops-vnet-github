@@ -1,0 +1,9 @@
+{
+  "properties": {
+    "displayName": "Logger-Credentials--64d40fa5463461134c6b2e46",
+    "keyVault": {
+      "secretIdentifier": "https://kv-pktmtbrc-dev.vault.azure.net/secrets/kvs-aikey"
+    },
+    "secret": true
+  }
+}

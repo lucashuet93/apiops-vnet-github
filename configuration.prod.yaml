@@ -1,21 +1,21 @@
 apimServiceName: apim-pktmtbrc-prod
 namedValues:
-  - name: 64d40fa5463461134c6b2e45
+  - name: Logger-Credentials
     properties:
-      displayName: Logger-Credentials--64d40fa5463461134c6b2e45
+      displayName: Logger-Credentials
       keyVault:
         secretIdentifier: "https://kv-pktmtbrc-prod.vault.azure.net/secrets/kvs-aikey"
 loggers:
-    # the name of the logger has to match the folder name in apimartifacts/loggers. 
-    # the folder name originally matches the dev instance's extracted logger name, but was renamed to a generic one
-    - name: applicationinsights
-      properties:
-        resourceId: "/subscriptions/{SUBSCRIPTION_ID}/resourceGroups/rg-pktmtbrc-prod/providers/Microsoft.Insights/components/ai-pktmtbrc-prod"
-        credentials:
-          instrumentationKey: "{{Logger-Credentials--64d40fa5463461134c6b2e45}}"
+  # the name of the logger has to match the folder name in apimartifacts/loggers.
+  # the folder name originally matches the dev instance's extracted logger name, but was renamed to a generic one
+  - name: applicationinsights
+    properties:
+      resourceId: "/subscriptions/{SUBSCRIPTION_ID}/resourceGroups/rg-pktmtbrc-prod/providers/Microsoft.Insights/components/ai-pktmtbrc-prod"
+      credentials:
+        instrumentationKey: "{{Logger-Credentials}}"
 diagnostics:
-   - name: applicationinsights
-     properties:
-       verbosity: Error
-       # loggerId must match the name of the logger above, in this case applicationinsights
-       loggerId: "/subscriptions/{SUBSCRIPTION_ID}/resourceGroups/rg-pktmtbrc-prod/providers/Microsoft.ApiManagement/service/apim-pktmtbrc-prod/loggers/applicationinsights"
+  - name: applicationinsights
+    properties:
+      verbosity: Error
+      # loggerId must match the name of the logger above, in this case applicationinsights
+      loggerId: "/subscriptions/{SUBSCRIPTION_ID}/resourceGroups/rg-pktmtbrc-prod/providers/Microsoft.ApiManagement/service/apim-pktmtbrc-prod/loggers/applicationinsights"
