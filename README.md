@@ -1,16 +1,18 @@
-# API Ops in an Azure Virtual Network
+# API Ops
 
-The accelerator demonstrates use of [API Ops](https://azure.github.io/apiops/apiops/0-labPrerequisites/) to deploy changes from a development to production API Management instance that are hosted in separate Azure Virtual Networks.
+The accelerator demonstrates use of [API Ops](https://azure.github.io/apiops/apiops/0-labPrerequisites/) to deploy changes from a development to production API Management instance that are hosted in separate environments.
 
 Terraform is used to deploy the supporting infrastructure, including the API Management instances, and API Ops handles configuration promotion from the development to production environment.
 
 ## Architecture
 
-Two resource groups are deployed, dev and prod, that contain identical resources. A developer SKU instance of API Management is deployed in internal mode into a dedicated subnet in a virtual network. The subnets have NSGs with [required rules](https://learn.microsoft.com/en-us/azure/api-management/api-management-using-with-vnet?tabs=stv2#configure-nsg-rules) applied and the API Management instance is configured to use the [required Azure Public IP resource](https://learn.microsoft.com/en-us/azure/api-management/api-management-using-with-vnet?tabs=stv2#prerequisites).
+Two resource groups are deployed, dev and prod, that contain identical resources. A developer SKU instance of API Management is deployed alongside a number of supporting resources - Key Vault, Log Analytics, and Application Insights.
 
 ![Architecture](./assets/architecture.png)
 
-The API Ops tool does not require additional considerations be made for the VNet - it operates the same way whether API Management is publicly accessible or not. When deployed in internal or external mode in an Azure Virtual Network, API Management requires a [Public IP address](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-addresses), which is used to expose management operations. The API Ops tool's executables use the management endpoints to read and update API Management resources, so the pipelines are able to make configuration changes to the two instances while they remain publicly inaccessible for consumption.
+The Application Insights Instrumentation Key is stored as a Key Vault secret, referenced by the API Management ```Logger-Credentials``` named value defined in [/apimartifacts](./apimartifacts/). API Management has a logger resource within /apimartifacts that connects to the Application Insights resource via the ```Logger-Credentials``` named value, and sends diagnostics to Log Analytics.
+
+The values stored in [/apimartifacts](./apimartifacts/) correspond to the dev environment. Importantly, when the configuration is applied to the prod environment, the [configuration.prod.yaml](./configuration.prod.yaml) file is used to override resource ids to point at the prod environment's Key Vault, Log Analytics, and Application Insights resources. 
 
 ## Pre-Requisites
 
@@ -48,12 +50,11 @@ Create a new `prod` environment using the same settings but remembering to use t
 - `API_MANAGEMENT_SERVICE_NAME` (Use `PROD_APIM_NAME`)
 - `AZURE_RESOURCE_GROUP_NAME` (Use `PROD_RESOURCE_GROUP_NAME`)
 
-## Update the development API Management instance
+## Run the Publisher pipeline
 
-Navigate to the [Azure Portal](https://portal.azure.com/) and find the dev APIM instance. Update the configuration in some way - add a product, an API, a named value, etc.
+The publisher pipeline will apply the API Management configuration in the main branch to both the dev and prod APIM instances. 
 
-## Run the Extractor and Publisher pipelines
+Navigate to the Actions blade in the GitHub repository and run the Publisher pipeline. Confirm that the changes made to the dev APIM instance in the Azure portal cascaded successfully to the prod APIM instance.
 
-Navigate to the Actions blade in the GitHub repository and run the Extractor pipeline. When the pipeline completes, merge the newly opened Pull Request, which triggers the Publisher pipeline.
 
-Confirm that the changes made to the dev APIM instance in the Azure portal cascaded successfully to the prod APIM instance.
+
