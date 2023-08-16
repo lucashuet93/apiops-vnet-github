@@ -54,7 +54,11 @@ Create a new `prod` environment using the same settings but remembering to use t
 
 The publisher pipeline will apply the API Management configuration in the main branch to both the dev and prod APIM instances. 
 
+Ensure hardcoded `{SUBSCRIPTION_ID}` values have been replaced with your subscription id and the prefix used in `.env` replaces the one found in `.env.example`.
+
 Navigate to the Actions blade in the GitHub repository and run the Publisher pipeline. Confirm that the changes made to the dev APIM instance in the Azure portal cascaded successfully to the prod APIM instance.
+
+Alternatively, the project dev container contains the publisher utility and can be run using `make publish-dev`.
 
 
 
