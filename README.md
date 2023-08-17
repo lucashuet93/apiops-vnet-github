@@ -14,6 +14,8 @@ The Application Insights Instrumentation Key is stored as a Key Vault secret, re
 
 The values stored in [/apimartifacts](./apimartifacts/) correspond to the dev environment. Importantly, when the configuration is applied to the prod environment, the [configuration.prod.yaml](./configuration.prod.yaml) file is used to override resource ids to point at the prod environment's Key Vault, Log Analytics, and Application Insights resources. 
 
+> **_NOTE:_**: The deployed architecture does not currently include the AKS cluster, but rather uses a dummy API provided by the Swagger Petstore. Additionally, the deployed architecture currently only includes the dev and prod environments. Work is ongoing to match the above diagrams.
+
 ## Pre-Requisites
 
 - [Terraform](https://www.terraform.io/downloads.html)
