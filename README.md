@@ -16,6 +16,17 @@ The values stored in [/apimartifacts](./apimartifacts/) correspond to the dev en
 
 > **_NOTE:_** The deployed architecture does not currently include the AKS cluster, but rather uses a dummy API provided by the Swagger Petstore. Additionally, the deployed architecture currently only includes the dev and prod environments. Work is ongoing to match the above diagrams.
 
+## Infrastructure overview
+
+For the MVE we'll use 2 environments. Each environment has its own instance of API management in dedicated VNet.
+
+For backend applications we'll use shared AKS cluster. Each environment will have its own Kubernetes namespace. All backend services will be exposed via the same 
+ingress and will be available for APIm by urls:
+- apim-mve-dev.${some-public-dns-zone}
+- apim-mve-prod.${some-public-dns-zone}
+
+![Infrastructure](./assets/Infra-backend.drawio.png)
+
 ## Pre-Requisites
 
 - [Terraform](https://www.terraform.io/downloads.html)
