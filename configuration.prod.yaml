@@ -22,13 +22,17 @@ diagnostics:
 apis:
   - name: swagger-petstore
     properties:
+      displayName: "Swagger Petstore V1"
       apiVersionSetId: "/subscriptions/{SUBSCRIPTION_ID}/resourceGroups/rg-pktmtbrc-prod/providers/Microsoft.ApiManagement/service/apim-pktmtbrc-prod/apiVersionSets/swagger-petstore" 
   - name: swagger-petstore-v2
     properties:
+      displayName: "Swagger Petstore V2"
       apiVersionSetId: "/subscriptions/{SUBSCRIPTION_ID}/resourceGroups/rg-pktmtbrc-prod/providers/Microsoft.ApiManagement/service/apim-pktmtbrc-prod/apiVersionSets/swagger-petstore" 
   - name: swagger-petstore-v3
     properties:
+      displayName: "Swagger Petstore V3"
       apiVersionSetId: "/subscriptions/{SUBSCRIPTION_ID}/resourceGroups/rg-pktmtbrc-prod/providers/Microsoft.ApiManagement/service/apim-pktmtbrc-prod/apiVersionSets/swagger-petstore" 
   - name: swagger-petstore-v3;rev=2
     properties:
+      displayName: "Swagger Petstore V3 Revision 2"
       apiVersionSetId: "/subscriptions/{SUBSCRIPTION_ID}/resourceGroups/rg-pktmtbrc-prod/providers/Microsoft.ApiManagement/service/apim-pktmtbrc-prod/apiVersionSets/swagger-petstore" 
