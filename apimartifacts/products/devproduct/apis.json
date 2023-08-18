@@ -1,5 +1,11 @@
 [
   {
     "name": "swagger-petstore"
+  },
+  {
+    "name": "swagger-petstore-v2"
+  },
+  {
+    "name": "swagger-petstore-v3"
   }
 ]
