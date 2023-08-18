@@ -19,3 +19,16 @@ diagnostics:
       verbosity: Error
       # loggerId must match the name of the logger above, in this case applicationinsights
       loggerId: "/subscriptions/{SUBSCRIPTION_ID}/resourceGroups/rg-pktmtbrc-prod/providers/Microsoft.ApiManagement/service/apim-pktmtbrc-prod/loggers/applicationinsights"
+apis:
+  - name: swagger-petstore
+    properties:
+      apiVersionSetId: "/subscriptions/{SUBSCRIPTION_ID}/resourceGroups/rg-pktmtbrc-prod/providers/Microsoft.ApiManagement/service/apim-pktmtbrc-prod/apiVersionSets/swagger-petstore" 
+  - name: swagger-petstore-v2
+    properties:
+      apiVersionSetId: "/subscriptions/{SUBSCRIPTION_ID}/resourceGroups/rg-pktmtbrc-prod/providers/Microsoft.ApiManagement/service/apim-pktmtbrc-prod/apiVersionSets/swagger-petstore" 
+  - name: swagger-petstore-v3
+    properties:
+      apiVersionSetId: "/subscriptions/{SUBSCRIPTION_ID}/resourceGroups/rg-pktmtbrc-prod/providers/Microsoft.ApiManagement/service/apim-pktmtbrc-prod/apiVersionSets/swagger-petstore" 
+  - name: swagger-petstore-v3;rev=2
+    properties:
+      apiVersionSetId: "/subscriptions/{SUBSCRIPTION_ID}/resourceGroups/rg-pktmtbrc-prod/providers/Microsoft.ApiManagement/service/apim-pktmtbrc-prod/apiVersionSets/swagger-petstore" 
