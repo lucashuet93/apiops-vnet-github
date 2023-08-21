@@ -19,6 +19,10 @@ diagnostics:
       verbosity: Error
       # loggerId must match the name of the logger above, in this case applicationinsights
       loggerId: "/subscriptions/{SUBSCRIPTION_ID}/resourceGroups/rg-pktmtbrc-prod/providers/Microsoft.ApiManagement/service/apim-pktmtbrc-prod/loggers/applicationinsights"
+backends:
+  - name: swagger-petstore
+    properties:
+      url: "https://petstore.swagger.io/v2"
 apis:
   - name: swagger-petstore
     properties:
