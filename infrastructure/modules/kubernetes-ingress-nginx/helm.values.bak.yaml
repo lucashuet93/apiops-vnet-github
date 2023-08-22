@@ -1,0 +1,56 @@
+---
+controller:
+  kind:                             Deployment
+  updateStrategy:
+    type:                           RollingUpdate
+    rollingUpdate:
+      maxUnavailable:               1
+  stats:
+    enabled:                        true
+  metrics:
+    enabled:                        true
+    service:
+      labels:
+        prometheus.io/scrape:       "true"
+        prometheus.io/port:         "10254"
+  publishService:
+    enabled:                        true
+  extraArgs:
+    v:                              "2"
+  config:
+    max-worker-connections:         "16384"
+    worker-processes:               "1"
+    map-hash-bucket-size:           "128"
+    server-tokens:                  "false"
+    ssl-protocols:                  "TLSv1.2 TLSv1.3"
+    ssl-ciphers:                    "EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH"
+    ssl-session-cache:              "true"
+    ssl-session-cache-size:         "10m"
+    ssl-session-tickets:            "false"
+    ssl-session-timeout:            "5m"
+    ssl-buffer-size:                "8k"
+    proxy-read-timeout:             "3600"
+    proxy-send-timeout:             "3600"
+    keep-alive:                     "65"
+    use-gzip:                       "true"
+    proxy-body-size:                "10m"
+    ssl-ecdh-curve:                 "prime256v1"
+    upstream-keepalive-connections: "32"
+    enable-brotli:                  "false"
+  service:
+    externalTrafficPolicy:          "Local"
+  resources:
+    limits:
+      cpu:                          500m
+      memory:                       768Mi
+    requests:
+      cpu:                          50m
+      memory:                       128Mi
+  admissionWebhooks:
+    enabled:                        true
+  autoscaling:
+    enabled:                        true
+    minReplicas:                    2
+    maxReplicas:                    5
+    targetCPUUtilizationPercentage: 75
+    targetMemoryUtilizationPercentage: 95
