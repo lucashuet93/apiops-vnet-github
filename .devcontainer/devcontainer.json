@@ -19,13 +19,13 @@
 		},
 		// "ghcr.io/devcontainers-contrib/features/gh-release:1": {
 		// 	"repo": "Azure/apiops",
-		// 	"version": "v4.7.0",
+		// 	"version": "v4.8.0",
 		// 	"binaryNames": "extractor",
 		// 	"assetRegex": "^(extractor.linux-x64.exe)"
 		// },
 		"ghcr.io/devcontainers-contrib/features/gh-release:1": {
 			"repo": "Azure/apiops",
-			"version": "v4.7.0",
+			"version": "v4.8.0",
 			"binaryNames": "publisher",
 			"assetRegex": "^(publisher.linux-x64.exe)"
 		}

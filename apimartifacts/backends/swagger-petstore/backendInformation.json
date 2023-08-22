@@ -1,0 +1,14 @@
+{
+  "properties": {
+    "credentials": {
+      "header": {},
+      "query": {}
+    },
+    "protocol": "http",
+    "tls": {
+      "validateCertificateChain": true,
+      "validateCertificateName": true
+    },
+    "url": "https://petstore.swagger.io/v2"
+  }
+}
