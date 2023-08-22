@@ -25,6 +25,17 @@ Configuration details are applied to the dev APIM instance before being publishe
 
 > **_NOTE:_** The deployed architecture does not currently include the AKS cluster, but rather uses a dummy API provided by the Swagger Petstore. Additionally, the deployed architecture currently only includes the dev and prod environments. Work is ongoing to match the above diagrams.
 
+## Infrastructure overview
+
+For the MVE we'll use 2 environments. Each environment has its own instance of API management in dedicated VNet.
+
+For backend applications we'll use shared AKS cluster. Each environment will have its own Kubernetes namespace. All backend services will be exposed via the same 
+ingress and will be available for APIm by urls:
+- apim-mve-dev.${some-public-dns-zone}
+- apim-mve-prod.${some-public-dns-zone}
+
+![Infrastructure](./assets/Infra-backend.drawio.png)
+
 ## API Management Configuration
 
 The [API Management configuration](./apimartifacts/) contains 3 versions of the [Swagger Petstore API](https://petstore.swagger.io). The separate versions use slightly different versions of the Swagger Petstore Open API spec and thus expose different endpoints/functionalities. The Swagger Petstore is stored as an API Management backend and each API version includes a `<set-backend-service/>` policy that references it. The three API versions are all added to the same `swagger-petstore` Product.
