@@ -18,14 +18,16 @@ The values stored in [/apimartifacts](./apimartifacts/) correspond to the dev en
 
 ## Infrastructure overview
 
-For the MVE we'll use 2 environments. Each environment has its own instance of API management in dedicated VNet.
+For the MVE we'll use 2 types of environment. Each environment has its own instance of API management in dedicated VNet.
+We will have multiple application environment.
 
 For backend applications we'll use shared AKS cluster. Each environment will have its own Kubernetes namespace. All backend services will be exposed via the same 
 ingress and will be available for APIm by urls:
 - apim-mve-dev.${some-public-dns-zone}
+- apim-mve-stage.${some-public-dns-zone}
 - apim-mve-prod.${some-public-dns-zone}
 
-![Infrastructure](./assets/Infra-backend.drawio.png)
+![Infrastructure](./assets/Azure-Infrastructure.png)
 
 ## Pre-Requisites
 
