@@ -53,6 +53,8 @@ The incoming Open API spec and parameters file should trigger automatic generati
 
 In conclusion, when the backend API team releases a new Open API Spec for the API in the `/src` folder, we will expect a parameters file to accompany it. A new `/apimartifacts/apis/{API_NAME}`folder will be created with a name that corresponds to the new API version or revision. The parameters will be applied to three templates in order to generate the `/apis/{API_NAME}/apiInformation.json` and `/apis/{API_NAME}/policy.xml` that are added to the `/apimartifacts/apis/{API_NAME}`folder, and the `/products/{PRODUCT_NAME}/apis.json` files that will be overwritten in their existing Product folders. A container running in AKS will use the API Ops Publisher to publish the new configuration to all APIM instances.
 
+![Diagram](../adr001.png)
+
 ## Considerations
 
 - We had initially planned to use a separate, upstream repository to house the Java based API and Open API specs to simulate common enterprise architecture. The single repository approach can be extrapolated out to multiple repositories at a later time and makes it simpler for us to develop the release process over the current period (e.g. do not have to create another repo, add contributors, policies, etc.).
