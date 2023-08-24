@@ -55,6 +55,10 @@ In conclusion, when the backend API team releases a new Open API Spec for the AP
 
 ![Diagram](../adr001.png)
 
+## Open Questions
+
+- Some process needs to build the `/apis/{API_NAME}/specification.yaml`, `/apis/{API_NAME}/apiInformation.json`, `/apis/{API_NAME}/policy.xml`, and the `/products/{PRODUCT_NAME}/apis.json` files from the templates we build and incoming parameters file. Should we script this, add a small application that does the mapping, or something else?
+
 ## Considerations
 
 - We had initially planned to use a separate, upstream repository to house the Java based API and Open API specs to simulate common enterprise architecture. The single repository approach can be extrapolated out to multiple repositories at a later time and makes it simpler for us to develop the release process over the current period (e.g. do not have to create another repo, add contributors, policies, etc.).
