@@ -8,6 +8,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   identity {
     type = "SystemAssigned"
   }
+
   default_node_pool {
     name                = "default"
     vm_size             = var.default_vm_size
@@ -29,24 +30,26 @@ resource "azurerm_kubernetes_cluster" "aks" {
   }
 }
 
-resource "azuread_application" "aks_cluster_admin" {
-  display_name = format("%s%s", var.aks_name, "-admin")
-  owners       = [data.azuread_client_config.current.object_id]
-}
-
-resource "azuread_service_principal" "aks_cluster_admin" {
-  application_id               = azuread_application.aks_cluster_admin.application_id
-  app_role_assignment_required = false
-  owners                       = [data.azuread_client_config.current.object_id]
-}
-
 resource "azuread_application" "aks_cluster_user" {
   display_name = format("%s%s", var.aks_name, "-user")
   owners       = [data.azuread_client_config.current.object_id]
 }
 
 resource "azuread_service_principal" "aks_cluster_user" {
-  application_id               = azuread_application.aks_cluster_user.application_id
-  app_role_assignment_required = false
-  owners                       = [data.azuread_client_config.current.object_id]
+  application_id = azuread_application.aks_cluster_user.application_id
+  owners         = [data.azuread_client_config.current.object_id]
+}
+
+resource "azurerm_role_assignment" "aks_cluster_user" {
+  scope              = azurerm_kubernetes_cluster.aks.id
+  role_definition_id = data.azurerm_role_definition.aks_cluster_user.id
+  principal_id       = azuread_service_principal.aks_cluster_user.object_id
+
+  lifecycle {
+    ignore_changes = [role_definition_id] # see https://github.com/hashicorp/terraform-provider-azurerm/issues/4258
+  }
+}
+
+resource "azuread_service_principal_password" "aks_cluster_user_password" {
+  service_principal_id = azuread_service_principal.aks_cluster_user.object_id
 }
