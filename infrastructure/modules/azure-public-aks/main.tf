@@ -28,3 +28,25 @@ resource "azurerm_kubernetes_cluster" "aks" {
     service_cidr      = var.aks_service_cidr
   }
 }
+
+resource "azuread_application" "aks_cluster_admin" {
+  display_name = format("%s%s", var.aks_name, "-admin")
+  owners       = [data.azuread_client_config.current.object_id]
+}
+
+resource "azuread_service_principal" "aks_cluster_admin" {
+  application_id               = azuread_application.aks_cluster_admin.application_id
+  app_role_assignment_required = false
+  owners                       = [data.azuread_client_config.current.object_id]
+}
+
+resource "azuread_application" "aks_cluster_user" {
+  display_name = format("%s%s", var.aks_name, "-user")
+  owners       = [data.azuread_client_config.current.object_id]
+}
+
+resource "azuread_service_principal" "aks_cluster_user" {
+  application_id               = azuread_application.aks_cluster_user.application_id
+  app_role_assignment_required = false
+  owners                       = [data.azuread_client_config.current.object_id]
+}
