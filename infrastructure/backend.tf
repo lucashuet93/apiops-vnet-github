@@ -63,14 +63,14 @@ module "ingress-nginx" {
   }
 }
 
-module "cert-manager" {
-  source     = "./modules/kubernetes-cert-manager"
-  acme_email = "aaheiev@gmail.com"
-  providers = {
-    helm    = helm
-    kubectl = kubectl
-  }
-}
+#module "cert-manager" {
+#  source     = "./modules/kubernetes-cert-manager"
+#  acme_email = "aaheiev@gmail.com"
+#  providers = {
+#    helm    = helm
+#    kubectl = kubectl
+#  }
+#}
 
 resource "azurerm_dns_a_record" "backend_a_records" {
   for_each            = toset(var.backend_endpoints)

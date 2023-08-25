@@ -33,11 +33,17 @@ resource "azurerm_kubernetes_cluster" "aks" {
 resource "azuread_application" "aks_cluster_user" {
   display_name = format("%s%s", var.aks_name, "-user")
   owners       = [data.azuread_client_config.current.object_id]
+  lifecycle {
+    ignore_changes = [owners]
+  }
 }
 
 resource "azuread_service_principal" "aks_cluster_user" {
   application_id = azuread_application.aks_cluster_user.application_id
   owners         = [data.azuread_client_config.current.object_id]
+  lifecycle {
+    ignore_changes = [owners]
+  }
 }
 
 resource "azurerm_role_assignment" "aks_cluster_user" {

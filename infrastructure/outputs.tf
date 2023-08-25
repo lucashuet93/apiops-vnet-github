@@ -23,7 +23,7 @@
 #   description = "Development APIM Name."
 #   value       = module.apim_dev.apim.apim_name
 # }
-  
+
 # output "prod_apim_name" {
 #   description = "Production APIM Name."
 #   value       = module.apim_prod.apim.apim_name
