@@ -1,0 +1,109 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: apim-config
+  namespace: apim-be-dev
+data:
+  apiInformation.json: |
+    {
+      "properties": {
+        "apiRevision": "1",
+        "authenticationSettings": {},
+        "contact": {
+          "email": "apiteam@swagger.io"
+        },
+        "description": "This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key \u0060special-key\u0060 to test the authorization filters.",
+        "displayName": "Swagger Petstore",
+        "isCurrent": true,
+        "license": {
+          "name": "Apache 2.0",
+          "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "path": "",
+        "protocols": [
+          "http",
+          "https"
+        ],
+        "serviceUrl": "https://petstore.swagger.io/v2",
+        "subscriptionKeyParameterNames": {
+          "header": "Ocp-Apim-Subscription-Key",
+          "query": "subscription-key"
+        },
+        "subscriptionRequired": true,
+        "termsOfServiceUrl": "http://swagger.io/terms/"
+      }
+    }
+  apis.json: |
+    [
+      {
+        "name": "swagger-petstore"
+      },
+      {
+        "name": "swagger-petstore-v2"
+      },
+      {
+        "name": "swagger-petstore-v3"
+      }
+    ]
+  openApiSpec.yaml: |
+    ---
+    openapi: 3.0.1
+    info:
+      title: OpenAPI definition
+      version: v0
+    servers:
+      - url: http://localhost:8080
+        description: Generated server url
+    paths:
+      "/version":
+        get:
+          tags:
+            - api-controller
+          operationId: getVersion
+          responses:
+            '200':
+              description: OK
+              content:
+                "*/*":
+                  schema:
+                    type: string
+      "/reverse-name":
+        get:
+          tags:
+            - api-controller
+          operationId: reverseName
+          parameters:
+            - name: name
+              in: query
+              required: true
+              schema:
+                type: string
+          responses:
+            '200':
+              description: OK
+              content:
+                "*/*":
+                  schema:
+                    type: string
+      "/health":
+        get:
+          tags:
+            - api-controller
+          operationId: healthCheck
+          responses:
+            '200':
+              description: OK
+              content:
+                "*/*":
+                  schema:
+                    type: string
+    components: { }
+  policy.xml: |
+    <policies>
+        <inbound/>
+        <backend>
+            <forward-request/>
+        </backend>
+        <outbound/>
+    </policies>
