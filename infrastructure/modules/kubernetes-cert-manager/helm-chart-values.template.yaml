@@ -1,5 +1,0 @@
----
-installCRDs:          true
-ingressShim:
-  defaultIssuerName:  letsencrypt
-  defaultIssuerKind:  ClusterIssuer
