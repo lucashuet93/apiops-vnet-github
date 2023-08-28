@@ -29,22 +29,6 @@ resource "azuread_service_principal_password" "apim_backend_spn_passwords" {
   service_principal_id = azuread_service_principal.apim_backend_spns[each.value].id
 }
 
-resource "kubernetes_secret" "dev_apim_access" {
-  for_each = toset(local.dev_backend_environments)
-  metadata {
-    name      = "apim-access"
-    namespace = each.value
-  }
-  data = {
-    AZURE_CLIENT_ID             = azuread_service_principal.apim_backend_spns[each.value].application_id
-    AZURE_CLIENT_SECRET         = azuread_service_principal_password.apim_backend_spn_passwords[each.value].value
-    AZURE_SUBSCRIPTION_ID       = data.azurerm_client_config.current.subscription_id
-    AZURE_TENANT_ID             = azuread_service_principal.apim_backend_spns[each.value].application_id
-    API_MANAGEMENT_SERVICE_NAME = "DEV_APIM_NAME"
-    AZURE_RESOURCE_GROUP_NAME   = "DEV_RESOURCE_GROUP_NAME"
-  }
-}
-
 module "apim_dev" {
   source = "./modules/azure-apim"
   name   = "apim-dev"
@@ -54,6 +38,22 @@ module "apim_dev" {
   ]
 }
 
+resource "kubernetes_secret" "dev_apim_access" {
+  depends_on = [module.apim_dev]
+  for_each   = toset(local.dev_backend_environments)
+  metadata {
+    name      = "apim-access"
+    namespace = each.value
+  }
+  data = {
+    AZURE_CLIENT_ID             = azuread_service_principal.apim_backend_spns[each.value].application_id
+    AZURE_CLIENT_SECRET         = azuread_service_principal_password.apim_backend_spn_passwords[each.value].value
+    AZURE_SUBSCRIPTION_ID       = data.azurerm_client_config.current.subscription_id
+    AZURE_TENANT_ID             = azuread_service_principal.apim_backend_spns[each.value].application_id
+    API_MANAGEMENT_SERVICE_NAME = module.apim_dev.name
+    AZURE_RESOURCE_GROUP_NAME   = module.apim_dev.rg_name
+  }
+}
 
 #module "apim_dev" {
 #  source = "./modules/apim"
