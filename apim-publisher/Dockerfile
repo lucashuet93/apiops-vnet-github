@@ -7,3 +7,6 @@ RUN apt update -qq \
 
 RUN wget https://github.com/Azure/apiops/releases/download/${APIM_VERSION}/publisher.linux-x64.exe -O /usr/local/bin/publisher \
     && chmod +x /usr/local/bin/publisher
+
+RUN apt-get purge -y wget \
+    && apt-get autoremove -y

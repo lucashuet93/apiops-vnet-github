@@ -7,18 +7,15 @@ metadata:
 spec:
   containers:
     - name: test
-      image: gcacrapim.azurecr.io/apim-publisher:4.9.0-1
+      image: gcacrapim.azurecr.io/apim-publisher:4.9.0-4
       stdin: true
       tty: true
       env:
         - name: API_MANAGEMENT_SERVICE_OUTPUT_FOLDER_PATH
           value: /apimartifacts
-        - name: API_MANAGEMENT_SERVICE_NAME
-          value: do-not-know-yet
-        - name: AZURE_RESOURCE_GROUP_NAME
-          value: do-not-know-yet
-        - name: AZURE_SUBSCRIPTION_ID
-          value: f339e7ed-cf12-4090-baba-a02c9b76384b
+      envFrom:
+        - secretRef:
+            name: apim-access
       volumeMounts:
         - mountPath: /apimartifacts
           name: apimartifacts
