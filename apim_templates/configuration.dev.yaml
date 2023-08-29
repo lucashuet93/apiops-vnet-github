@@ -33,7 +33,7 @@ apis:
   - name: swagger-petstore-v2
     properties:
       displayName: "Swagger Petstore V2"
-      apiVersionSetId: "/subscriptions/{SUBSCRIPTION_ID}/resourceGroups/${DEV_RESOURCE_GROUP_NAME}/providers/Microsoft.ApiManagement/service/${DEV_APIM_NAME}/apiVersionSets/swagger-petstore" 
+      apiVersionSetId: "/subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/${DEV_RESOURCE_GROUP_NAME}/providers/Microsoft.ApiManagement/service/${DEV_APIM_NAME}/apiVersionSets/swagger-petstore" 
   - name: swagger-petstore-v3
     properties:
       displayName: "Swagger Petstore V3"
