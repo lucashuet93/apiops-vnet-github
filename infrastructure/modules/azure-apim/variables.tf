@@ -8,18 +8,13 @@ variable "name" {
   type = string
 }
 
-#variable "prefix" {
-#  type        = string
-#  description = "Prefix for resource names"
-#}
-#
-#variable "environment" {
-#  type        = string
-#  description = "Normally dev or prod"
-#}
-
 variable "contributors_sp_object_ids" {
   type        = list(string)
   description = "The Service Principal Object ID's"
   default     = []
+}
+
+variable "akv_id" {
+  type        = string
+  description = "Azure KV id"
 }

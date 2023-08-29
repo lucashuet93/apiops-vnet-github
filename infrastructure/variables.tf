@@ -12,11 +12,6 @@ variable "location" {
   default     = "West Europe"
 }
 
-#variable "prefix" {
-#  type        = string
-#  description = "Prefix for resource names"
-#}
-
 variable "services_rg_name" {
   type    = string
   default = "apim-services"
@@ -28,17 +23,16 @@ variable "backend_rg_name" {
 }
 
 variable "dns_domain" {
-  type = string
+  type    = string
+  default = ""
 }
 
 variable "acr_name" {
-  type    = string
-  default = "gcacrapim"
+  type = string
 }
 
 variable "akv_name" {
-  type    = string
-  default = "gc-apim-akv"
+  type = string
 }
 
 variable "aks_name" {
@@ -46,7 +40,12 @@ variable "aks_name" {
   default = "apim-backend-aks"
 }
 
-variable "backend_endpoints" {
+variable "dev_backend_environments" {
   type    = list(string)
-  default = ["apim-be-dev", "apim-be-stage", "apim-be-prod", ]
+  default = ["apim-be-dev", "apim-be-test"]
+}
+
+variable "prod_backend_environments" {
+  type    = list(string)
+  default = ["apim-be-stage", "apim-be-prod"]
 }

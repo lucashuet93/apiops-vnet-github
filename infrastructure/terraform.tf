@@ -21,14 +21,6 @@ terraform {
       source  = "hashicorp/helm"
       version = ">= 2.10.1"
     }
-    kubectl = {
-      source  = "gavinbunney/kubectl"
-      version = ">= 1.14.0"
-    }
-    sops = {
-      source  = "carlpett/sops"
-      version = ">= 0.7.2"
-    }
   }
   backend "azurerm" {
     resource_group_name  = "infra"
@@ -44,8 +36,5 @@ provider "azurerm" {
   skip_provider_registration = true
   features {}
 }
-
-#provider "azuread" {
-#}
 
 data "azurerm_client_config" "current" {}

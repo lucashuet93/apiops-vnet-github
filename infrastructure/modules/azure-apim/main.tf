@@ -61,3 +61,19 @@ resource "azurerm_monitor_diagnostic_setting" "apim_diagnostic_setting" {
     category = "AllMetrics"
   }
 }
+
+resource "azurerm_key_vault_access_policy" "key_vault_apim_access_policy" {
+  key_vault_id = var.akv_id
+  object_id    = azurerm_api_management.apim.identity[0].principal_id
+  tenant_id    = azurerm_api_management.apim.identity[0].tenant_id
+  secret_permissions = [
+    "Get",
+    "List"
+  ]
+}
+
+resource "azurerm_key_vault_secret" "application_insights_instrumentation_key" {
+  name         = "${var.name}-kvs-aikey"
+  value        = azurerm_application_insights.application_insights.instrumentation_key
+  key_vault_id = var.akv_id
+}

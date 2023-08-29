@@ -34,7 +34,6 @@ resource "kubernetes_secret" "nginx-dh-param" {
   data = {
     "dhparam.pem" = local.dhparam
   }
-  # ignore change so secret is not updated on every run
   lifecycle {
     ignore_changes = [
       data

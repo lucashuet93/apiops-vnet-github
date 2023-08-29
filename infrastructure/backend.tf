@@ -23,14 +23,6 @@ provider "kubernetes" {
   cluster_ca_certificate = module.aks.cluster_ca_certificate
 }
 
-provider "kubectl" {
-  host                   = module.aks.host
-  client_certificate     = module.aks.client_certificate
-  client_key             = module.aks.client_key
-  cluster_ca_certificate = module.aks.cluster_ca_certificate
-  load_config_file       = false
-}
-
 provider "helm" {
   kubernetes {
     host                   = module.aks.host
@@ -56,18 +48,20 @@ resource "azurerm_public_ip" "ingress_nginx_public_ip" {
 
 module "ingress-nginx" {
   depends_on        = [module.aks, azurerm_public_ip.ingress_nginx_public_ip]
-  source            = "./modules/kubernetes-ingress-nginx"
+  source            = "github.com/aaheiev/kubernetes-ingress-nginx?ref=4.7.1"
   public_ip_address = azurerm_public_ip.ingress_nginx_public_ip.ip_address
   providers = {
-    helm = helm
+    helm       = helm
+    kubernetes = kubernetes
   }
 }
 
-resource "azurerm_dns_a_record" "backend_a_records" {
-  for_each            = toset(var.backend_endpoints)
-  name                = each.value
-  zone_name           = azurerm_dns_zone.public_dns_zone.name
-  resource_group_name = azurerm_resource_group.services_rg.name
-  ttl                 = 300
-  records             = [azurerm_public_ip.ingress_nginx_public_ip.ip_address]
-}
+// Uncomment if you manage DNS zone and DNS records
+#resource "azurerm_dns_a_record" "backend_a_records" {
+#  for_each            = toset(var.backend_endpoints)
+#  name                = each.value
+#  zone_name           = azurerm_dns_zone.public_dns_zone.name
+#  resource_group_name = azurerm_resource_group.services_rg.name
+#  ttl                 = 300
+#  records             = [azurerm_public_ip.ingress_nginx_public_ip.ip_address]
+#}

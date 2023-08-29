@@ -1,15 +1,6 @@
 # SP's to manage APIM's from Kubernetes
 locals {
-  dev_backend_environments = [
-    "apim-be-dev",
-    "apim-be-test"
-  ]
-  prod_backend_environments = [
-    "apim-be-prod",
-    "apim-be-stage"
-  ]
-  #  backend_environments = concat(local.dev_backend_environments, local.prod_backend_environments)
-  backend_environments = local.dev_backend_environments
+  backend_environments = concat(var.dev_backend_environments, var.prod_backend_environments)
 }
 
 resource "azuread_application" "apim_backend_apps" {
@@ -29,9 +20,11 @@ resource "azuread_service_principal_password" "apim_backend_spn_passwords" {
   service_principal_id = azuread_service_principal.apim_backend_spns[each.value].id
 }
 
+// Dev APIM
 module "apim_dev" {
   source = "./modules/azure-apim"
   name   = "apim-dev"
+  akv_id = azurerm_key_vault.akv.id
   contributors_sp_object_ids = [
     azuread_service_principal.apim_backend_spns["apim-be-dev"].object_id,
     azuread_service_principal.apim_backend_spns["apim-be-test"].object_id
@@ -40,7 +33,7 @@ module "apim_dev" {
 
 resource "kubernetes_secret" "dev_apim_access" {
   depends_on = [module.apim_dev]
-  for_each   = toset(local.dev_backend_environments)
+  for_each   = toset(var.dev_backend_environments)
   metadata {
     name      = "apim-access"
     namespace = each.value
@@ -55,18 +48,30 @@ resource "kubernetes_secret" "dev_apim_access" {
   }
 }
 
-#module "apim_dev" {
-#  source = "./modules/apim"
-#  location = var.location
-#  prefix = var.prefix
-#  service_principal_object_id = azuread_service_principal.apim_spn.object_id
-#  environment = "dev"
-#}
-#
-#module "apim_prod" {
-#  source = "./modules/apim"
-#  location = var.location
-#  prefix = var.prefix
-#  service_principal_object_id = azuread_service_principal.apim_spn.object_id
-#  environment = "prod"
-#}
+// Prod APIM
+module "apim_prod" {
+  source = "./modules/azure-apim"
+  name   = "apim-prod"
+  akv_id = azurerm_key_vault.akv.id
+  contributors_sp_object_ids = [
+    azuread_service_principal.apim_backend_spns["apim-be-prod"].object_id,
+    azuread_service_principal.apim_backend_spns["apim-be-stage"].object_id
+  ]
+}
+
+resource "kubernetes_secret" "prod_apim_access" {
+  depends_on = [module.apim_prod]
+  for_each   = toset(var.prod_backend_environments)
+  metadata {
+    name      = "apim-access"
+    namespace = each.value
+  }
+  data = {
+    AZURE_CLIENT_ID             = azuread_service_principal.apim_backend_spns[each.value].application_id
+    AZURE_CLIENT_SECRET         = azuread_service_principal_password.apim_backend_spn_passwords[each.value].value
+    AZURE_SUBSCRIPTION_ID       = data.azurerm_client_config.current.subscription_id
+    AZURE_TENANT_ID             = azuread_service_principal.apim_backend_spns[each.value].application_id
+    API_MANAGEMENT_SERVICE_NAME = module.apim_prod.name
+    AZURE_RESOURCE_GROUP_NAME   = module.apim_prod.rg_name
+  }
+}
