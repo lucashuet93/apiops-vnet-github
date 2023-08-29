@@ -2,3 +2,7 @@
 .terraform*
 *.tfstate
 *.tfstate.backup
+
+# These files are created by the make infra command
+terraform_output.json
+terraform.env

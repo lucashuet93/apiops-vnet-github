@@ -1,7 +1,9 @@
 .idea/
 .DS_Store
 .env
-infrastructure/terraform_output.json
-infrastructure/terraform.env
+
+# This folder is created by "make extract" and contains the built binaries
 temp
+
+# This folder is created by "make artifacts" and contains the artifacts
 apim_artifacts
