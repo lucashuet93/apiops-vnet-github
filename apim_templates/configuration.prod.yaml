@@ -10,7 +10,7 @@ loggers:
   # the folder name originally matches the dev instance's extracted logger name, but was renamed to a generic one
   - name: applicationinsights
     properties:
-      resourceId: "/subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/${PROD_RESOURCE_GROUP_NAME}/providers/Microsoft.Insights/components/${PROD_APP_INSIGHTS}"
+      resourceId: "/subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/${PROD_RESOURCE_GROUP_NAME}/providers/Microsoft.Insights/components/${PROD_APP_INSIGHTS_NAME}"
       credentials:
         instrumentationKey: "{{Logger-Credentials}}"
 diagnostics:
