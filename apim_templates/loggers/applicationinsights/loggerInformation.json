@@ -6,6 +6,6 @@
     "description": "A logger originally created in the dev instance",
     "isBuffered": true,
     "loggerType": "applicationInsights",
-    "resourceId": "/subscriptions/{SUBSCRIPTION_ID}/resourceGroups/rg-pktmtbrc-dev/providers/Microsoft.Insights/components/ai-pktmtbrc-dev"
+    "resourceId": "<WILL BE REPLACED BY CREATING ARTIFACTS>"
   }
 }

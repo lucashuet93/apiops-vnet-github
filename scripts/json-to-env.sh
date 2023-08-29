@@ -30,12 +30,28 @@ jq -r '
             "env_var": "DEV_RESOURCE_GROUP_NAME"
         },
         {
+            "path": "dev_app_insights_name",
+            "env_var": "DEV_APP_INSIGHTS_NAME"
+        },
+        {
+            "path": "dev_key_vault_name",
+            "env_var": "DEV_KV_NAME"
+        },
+        {
             "path": "prod_apim_name",
             "env_var": "PROD_APIM_NAME"
         },
         {
             "path": "prod_resource_group_name",
             "env_var": "PROD_RESOURCE_GROUP_NAME"
+        },
+        {
+            "path": "prod_app_insights_name",
+            "env_var": "PROD_APP_INSIGHTS_NAME"
+        },
+        {
+            "path": "prod_key_vault_name",
+            "env_var": "PROD_KV_NAME"
         }
     ]
         as $env_vars_to_extract

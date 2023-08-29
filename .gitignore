@@ -4,3 +4,4 @@
 infrastructure/terraform_output.json
 infrastructure/terraform.env
 temp
+apim_artifacts
