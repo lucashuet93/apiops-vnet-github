@@ -1,0 +1,19 @@
+---
+ingress:
+  enabled: true
+  className: "nginx"
+  hosts:
+    - host: apim-be-dev.gc.bartbase.com
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls:
+    - secretName: gc-bartbase
+      hosts:
+        - apim-be-dev.gc.bartbase.com
+
+apimPublisher:
+  enable: true
+  image: gcacrapim.azurecr.io/apim-publisher
+  version: 4.9.0-1
+  accessSecret: apim-access
