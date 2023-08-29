@@ -33,7 +33,7 @@ The `specification.yaml` file for a new version or revision will be the spec tha
 
 In addition to the APIM API configuration itself, the API may need to be associated with existing Products. API Ops products are stored in the `/apimartifacts/products` folder, where each Product has it's own directory that corresponds to its name. API Ops uses a few files to define Product configuration, but uses the `/apimartifacts/products/{PRODUCT_NAME}/apis.json` file to set the APIs the Product should be associated with. The `apis.json` file should be updated for each of the Products the new API version/revision should be associated with.
 
-The `backends`, `diagnostics`, `loggers`, and and `named values` folders in `/apimartifacts` folder do not need to be updated on new spec changes. The backend url for the AKS cluster does not change on spec updates and the monitoring configuration for the previous versions/revisions of the API will be applied to the new version/revision as well.
+The `backends`, `diagnostics`, `loggers`, and `named values` folders in `/apimartifacts` folder do not need to be updated on new spec changes. The backend url for the AKS cluster does not change on spec updates and the monitoring configuration for the previous versions/revisions of the API will be applied to the new version/revision as well.
 
 In total, the files that should be added to the `/apimartifacts` folder when the backend API team releases a new spec are:
 
