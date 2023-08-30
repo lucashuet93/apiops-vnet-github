@@ -27,7 +27,6 @@
     },
     "httpCorrelationProtocol": "Legacy",
     "logClientIp": true,
-    "loggerId": "<WILL BE REPLACED BY CREATING ARTIFACTS>",
     "sampling": {
       "percentage": 100,
       "samplingType": "Fixed"

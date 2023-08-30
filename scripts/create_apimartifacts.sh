@@ -4,6 +4,8 @@ set -euo pipefail
 sourceDir=apim_templates
 destDir=apim_artifacts
 
+# Remove the apim_artifacts directory and recreate it
+rm -rf "${destDir}"
 mkdir -p "${destDir}"
 
 # Control the list of environment variables that are substituted
