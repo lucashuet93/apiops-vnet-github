@@ -8,7 +8,7 @@ Proposed
 
 ## Context
 
-The backend APIs fronted by API Management are developed by a separate team in a different repository. The API Management configuration stored in the [/apimartifacts](../../apimartifacts/) is not a static set of files, and instead must change over time to accommodate changes in the backend APIs.
+The backend APIs fronted by API Management are developed by a separate team in a different repository. The API Management configuration stored in the [/apim_templates](../../apim_templates/) is not a static set of files, and instead must change over time to accommodate changes in the backend APIs.
 
 As backend APIs change, their corresponding Open API Specs (v3) change as well. As new specs are created by the backend API team, the API Ops team must ingest the files and generate the required changes in API Management.
 
