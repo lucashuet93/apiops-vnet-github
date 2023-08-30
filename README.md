@@ -4,16 +4,19 @@ The accelerator demonstrates use of [API Ops](https://azure.github.io/apiops/api
 
 ## Repository Structure
 
-- [/.devcontainer](./.devcontainer/) contains the dev container with the installs necessary to run the project.
-- [/.github](./.github/) contains the API Ops GitHub Actions.
-- [/apimartifacts](./apimartifacts/) contains the API Management configuration.
-- [/assets](./assets/) contains the images and assets used in the README.
-- [/infrastructure](./infrastructure/) contains the Terraform infrastructure.
-- [/scripts](./scripts/) contains scripts used to deploy project infrastructure.
-- [/temp](./temp/) is an ignored folder that can be used locally to store extracted API Management configurations.
-- [Makefile](./Makefile) defines the set of operations that can be executed from the command line.
-- [.env.example](./.env.example) contains the environment variables necessary to run the project.
-- [configuration.prod.yaml](./configuration.prod.yaml) contains the configuration overrides for the production environment.
+```text
+📂
+├── [/.devcontainer](./.devcontainer/) contains the dev container with the installs necessary to run the project.
+├── [/.github](./.github/) contains the API Ops GitHub Actions.
+├── [/apim_templates](./apim_templates/) contains the API Management templated configuration.
+├── [/apim_artifacts](./apim_artifacts/) created when you run `make artifacts-dev` or `make artifacts-prod`.
+├── [/assets](./assets/) contains the images and assets used in the README.
+├── [/infrastructure](./infrastructure/) contains the Terraform infrastructure.
+├── [/scripts](./scripts/) contains scripts used to deploy project infrastructure.
+├── [/temp](./temp/) an ignored folder that can be used locally to store extracted API Management configurations.
+├── [Makefile](./Makefile) defines the set of operations that can be executed from the command line.
+└── [.env.example](./.env.example) contains the environment variables necessary to run the project.
+```
 
 ## Architecture
 
@@ -54,6 +57,21 @@ Terraform is used to deploy the supporting infrastructure, including the API Man
 - [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
 
 This repository comes with a [Dev Container](https://code.visualstudio.com/docs/devcontainers/containers) and all of the pre-requisites are already installed if you use it.
+
+### Running Locally
+
+A makefile provides a frontend to interacting with the project. This makefile is self documentating, and has the following targets:
+
+```text
+help                    💬 This help message :)
+infra                   🚀 Deploy the API Ops Infrastructure
+extract-dev             ⬇️ Export the development API Management instance to a temp local folder
+extract-prod            ⬇️ Export the development API Management instance to a temp local folder
+publish-dev             ⬆️ Publish to the development API Management instance
+# publish-prod          ⬆️ Publish to the production API Management instance
+artifacts-dev           ⚙️ Create APIM Artifacts based on environment variables
+artifacts-prod          ⚙️ Create APIM Artifacts based on environment variables
+```
 
 ### Deploy the Infrastructure
 
@@ -107,6 +125,6 @@ Navigate to the Actions blade in the GitHub repository and run the Publisher pip
 
 ### Extract API Management Configuration
 
-The extractor is not used to pull configuration changes into the [/apimartifacts](./apimartifacts/) folder - changes are made directly via git. However, the tool can be used to locally extract changes in order to understand how /apimartifacts files surface, their structure, etc.
+The extractor is not used to pull configuration changes into the [/apim_artifacts](./apim_artifacts/) folder - changes are made directly via git. However, the tool can be used to locally extract changes in order to understand how /apim_artifacts files surface, their structure, etc.
 
 To run the extractor locally, open Bash in the VSCode terminal and run `make extract-dev`. Configuration changes will be extracted into an ignored /temp folder.
