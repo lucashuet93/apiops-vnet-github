@@ -1,0 +1,52 @@
+---
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+  - url: https://apim-be-dev.gc.bartbase.com
+    description: Generated server url
+paths:
+  "/version":
+    get:
+      tags:
+        - api-controller
+      operationId: getVersion
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                type: string
+  "/reverse-name":
+    get:
+      tags:
+        - api-controller
+      operationId: reverseName
+      parameters:
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                type: string
+  "/health":
+    get:
+      tags:
+        - api-controller
+      operationId: healthCheck
+      responses:
+        '200':
+          description: OK
+          content:
+            "*/*":
+              schema:
+                type: string
+components: {}

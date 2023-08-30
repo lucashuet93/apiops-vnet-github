@@ -1,6 +1,5 @@
 ---
 ingress:
-  enabled: true
   hosts:
     - host: apim-be-dev.gc.bartbase.com
       paths:
@@ -10,3 +9,7 @@ ingress:
     - secretName: gc-bartbase
       hosts:
         - apim-be-dev.gc.bartbase.com
+
+apimPublisher:
+  enable: true
+  jobSleep: 12

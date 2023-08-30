@@ -1,0 +1,15 @@
+---
+ingress:
+  hosts:
+    - host: apim-be-prod.gc.bartbase.com
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls:
+    - secretName: gc-bartbase
+      hosts:
+        - apim-be-prod.gc.bartbase.com
+
+apimPublisher:
+  enable: true
+  jobSleep: 5
