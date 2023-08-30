@@ -9,9 +9,6 @@ info:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   version: '1.0'
-servers:
-  - url: http://${API_MANAGEMENT_SERVICE_NAME}.azure-api.net
-  - url: https://${API_MANAGEMENT_SERVICE_NAME}.azure-api.net
 paths:
   '/pet/{petId}/uploadImage':
     post:
