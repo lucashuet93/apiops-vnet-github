@@ -22,19 +22,19 @@ diagnostics:
     properties:
       loggerId: "/subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/${DEV_RESOURCE_GROUP_NAME}/providers/Microsoft.ApiManagement/service/${DEV_APIM_NAME}/loggers/azuremonitor"
 backends:
-  - name: swagger-petstore
+  - name: demo
     properties:
-      url: "https://petstore.swagger.io/v2"
+      url: "https://apim-be-dev.gc.bartbase.com"
 apis:
-  - name: swagger-petstore
+  - name: demo
     properties:
       displayName: "Swagger Petstore V1"
-      apiVersionSetId: "/subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/${DEV_RESOURCE_GROUP_NAME}/providers/Microsoft.ApiManagement/service/${DEV_APIM_NAME}/apiVersionSets/swagger-petstore" 
-  - name: swagger-petstore-v2
+      apiVersionSetId: "/subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/${DEV_RESOURCE_GROUP_NAME}/providers/Microsoft.ApiManagement/service/${DEV_APIM_NAME}/apiVersionSets/demo" 
+  - name: demo-v1
     properties:
       displayName: "Swagger Petstore V2"
-      apiVersionSetId: "/subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/${DEV_RESOURCE_GROUP_NAME}/providers/Microsoft.ApiManagement/service/${DEV_APIM_NAME}/apiVersionSets/swagger-petstore" 
-  - name: swagger-petstore-v3
+      apiVersionSetId: "/subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/${DEV_RESOURCE_GROUP_NAME}/providers/Microsoft.ApiManagement/service/${DEV_APIM_NAME}/apiVersionSets/demo" 
+  - name: demo-v2
     properties:
       displayName: "Swagger Petstore V3"
-      apiVersionSetId: "/subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/${DEV_RESOURCE_GROUP_NAME}/providers/Microsoft.ApiManagement/service/${DEV_APIM_NAME}/apiVersionSets/swagger-petstore"  
+      apiVersionSetId: "/subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/${DEV_RESOURCE_GROUP_NAME}/providers/Microsoft.ApiManagement/service/${DEV_APIM_NAME}/apiVersionSets/demo"  

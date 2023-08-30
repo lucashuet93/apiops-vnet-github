@@ -1,14 +1,13 @@
 {
   "properties": {
     "apiRevision": "1",
-    "apiVersion": "v3",
     "apiVersionSetId": "<WILL BE REPLACED BY CREATING ARTIFACTS>",
     "authenticationSettings": {},
     "contact": {
       "email": "apiteam@swagger.io"
     },
-    "description": "This is a sample server Petstore server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key \u0060special-key\u0060 to test the authorization filters.",
-    "displayName": "Swagger Petstore",
+    "description": "A description of the API.",
+    "displayName": "Demo",
     "isCurrent": true,
     "license": {
       "name": "Apache 2.0",
@@ -19,7 +18,6 @@
       "http",
       "https"
     ],
-    "serviceUrl": "https://petstore.swagger.io/v2",
     "subscriptionKeyParameterNames": {
       "header": "Ocp-Apim-Subscription-Key",
       "query": "subscription-key"
