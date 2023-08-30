@@ -1,0 +1,40 @@
+apimServiceName: ${DEV_APIM_NAME}
+namedValues:
+  - name: Logger-Credentials
+    properties:
+      displayName: Logger-Credentials
+      keyVault:
+        secretIdentifier: "https://${DEV_KV_NAME}.vault.azure.net/secrets/kvs-aikey"
+loggers:
+  # the name of the logger has to match the folder name in apimartifacts/loggers.
+  # the folder name originally matches the dev instance's extracted logger name, but was renamed to a generic one
+  - name: applicationinsights
+    properties:
+      resourceId: "/subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/${DEV_RESOURCE_GROUP_NAME}/providers/Microsoft.Insights/components/${DEV_APP_INSIGHTS_NAME}"
+      credentials:
+        instrumentationKey: "{{Logger-Credentials}}"
+diagnostics:
+  - name: applicationinsights
+    properties:
+      # loggerId must match the name of the logger above, in this case applicationinsights
+      loggerId: "/subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/${DEV_RESOURCE_GROUP_NAME}/providers/Microsoft.ApiManagement/service/${DEV_APIM_NAME}/loggers/applicationinsights"
+  - name: azuremonitor
+    properties:
+      loggerId: "/subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/${DEV_RESOURCE_GROUP_NAME}/providers/Microsoft.ApiManagement/service/${DEV_APIM_NAME}/loggers/azuremonitor"
+backends:
+  - name: swagger-petstore
+    properties:
+      url: "https://petstore.swagger.io/v2"
+apis:
+  - name: swagger-petstore
+    properties:
+      displayName: "Swagger Petstore V1"
+      apiVersionSetId: "/subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/${DEV_RESOURCE_GROUP_NAME}/providers/Microsoft.ApiManagement/service/${DEV_APIM_NAME}/apiVersionSets/swagger-petstore" 
+  - name: swagger-petstore-v2
+    properties:
+      displayName: "Swagger Petstore V2"
+      apiVersionSetId: "/subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/${DEV_RESOURCE_GROUP_NAME}/providers/Microsoft.ApiManagement/service/${DEV_APIM_NAME}/apiVersionSets/swagger-petstore" 
+  - name: swagger-petstore-v3
+    properties:
+      displayName: "Swagger Petstore V3"
+      apiVersionSetId: "/subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/${DEV_RESOURCE_GROUP_NAME}/providers/Microsoft.ApiManagement/service/${DEV_APIM_NAME}/apiVersionSets/swagger-petstore"  

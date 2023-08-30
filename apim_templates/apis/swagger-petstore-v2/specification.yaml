@@ -8,10 +8,10 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: '1.0'
+  version: '2.0'
 servers:
-  - url: http://apim-pktmtbrc-dev.azure-api.net
-  - url: https://apim-pktmtbrc-dev.azure-api.net
+  - url: http://${API_MANAGEMENT_SERVICE_NAME}.azure-api.net
+  - url: https://${API_MANAGEMENT_SERVICE_NAME}.azure-api.net
 paths:
   '/pet/{petId}/uploadImage':
     post:
@@ -50,39 +50,6 @@ paths:
                 type: string
                 message: string
   /pet:
-    post:
-      tags:
-        - pet
-      summary: Add a new pet to the store
-      operationId: addPet
-      requestBody:
-        description: Pet object that needs to be added to the store
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Pet'
-            example:
-              id: 0
-              category:
-                id: 0
-                name: string
-              name: doggie
-              photoUrls:
-                - string
-              tags:
-                - id: 0
-                  name: string
-              status: available
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Pet'
-            example: <Pet> <id>0</id> <Category> <id>0</id> <name>string</name> </Category> <name>doggie</name> <photoUrls> <photoUrl>string</photoUrl> </photoUrls> <tags> <Tag> <id>0</id> <name>string</name> </Tag> </tags> <status>available</status> </Pet>
-      responses:
-        '405':
-          description: Invalid input
-          content:
-            application/json: { }
-            application/xml: { }
     put:
       tags:
         - pet

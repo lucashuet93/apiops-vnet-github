@@ -8,10 +8,10 @@ info:
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-  version: '2.0'
+  version: '3.0'
 servers:
-  - url: http://apim-pktmtbrc-dev.azure-api.net
-  - url: https://apim-pktmtbrc-dev.azure-api.net
+  - url: http://${API_MANAGEMENT_SERVICE_NAME}.azure-api.net
+  - url: https://${API_MANAGEMENT_SERVICE_NAME}.azure-api.net
 paths:
   '/pet/{petId}/uploadImage':
     post:
@@ -50,6 +50,39 @@ paths:
                 type: string
                 message: string
   /pet:
+    post:
+      tags:
+        - pet
+      summary: Add a new pet to the store
+      operationId: addPet
+      requestBody:
+        description: Pet object that needs to be added to the store
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pet'
+            example:
+              id: 0
+              category:
+                id: 0
+                name: string
+              name: doggie
+              photoUrls:
+                - string
+              tags:
+                - id: 0
+                  name: string
+              status: available
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Pet'
+            example: <Pet> <id>0</id> <Category> <id>0</id> <name>string</name> </Category> <name>doggie</name> <photoUrls> <photoUrl>string</photoUrl> </photoUrls> <tags> <Tag> <id>0</id> <name>string</name> </Tag> </tags> <status>available</status> </Pet>
+      responses:
+        '405':
+          description: Invalid input
+          content:
+            application/json: { }
+            application/xml: { }
     put:
       tags:
         - pet
@@ -369,32 +402,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/Order'
               example: <Order> <id>0</id> <petId>0</petId> <quantity>0</quantity> <shipDate>string</shipDate> <status>placed</status> <complete>true</complete> </Order>
-        '400':
-          description: Invalid ID supplied
-          content:
-            application/json: { }
-            application/xml: { }
-        '404':
-          description: Order not found
-          content:
-            application/json: { }
-            application/xml: { }
-    delete:
-      tags:
-        - store
-      summary: Delete purchase order by ID
-      description: For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors
-      operationId: deleteOrder
-      parameters:
-        - name: orderId
-          in: path
-          description: Format - int64. ID of the order that needs to be deleted
-          required: true
-          schema:
-            minimum: 1
-            type: integer
-            format: int64
-      responses:
         '400':
           description: Invalid ID supplied
           content:

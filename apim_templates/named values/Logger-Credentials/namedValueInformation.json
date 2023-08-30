@@ -2,7 +2,7 @@
   "properties": {
     "displayName": "Logger-Credentials",
     "keyVault": {
-      "secretIdentifier": "https://kv-pktmtbrc-dev.vault.azure.net/secrets/kvs-aikey"
+      "secretIdentifier": "<WILL BE REPLACED BY CREATING ARTIFACTS>"
     },
     "secret": true
   }

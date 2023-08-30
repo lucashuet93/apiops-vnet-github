@@ -1,7 +1,8 @@
 {
   "properties": {
     "apiRevision": "1",
-    "apiVersionSetId": "/subscriptions/{SUBSCRIPTION_ID}/resourceGroups/rg-pktmtbrc-dev/providers/Microsoft.ApiManagement/service/apim-pktmtbrc-dev/apiVersionSets/swagger-petstore",
+    "apiVersion": "v3",
+    "apiVersionSetId": "<WILL BE REPLACED BY CREATING ARTIFACTS>",
     "authenticationSettings": {},
     "contact": {
       "email": "apiteam@swagger.io"

@@ -71,9 +71,9 @@ The publisher will apply the API Management configuration in the current branch 
 
 The environment variables necessary for the publisher executable are set in the `.env` file automatically using Terraform outputs during the deployment process and do not need to be updated.
 
-Ensure hardcoded `{SUBSCRIPTION_ID}` values have been replaced with your subscription id and the prefix used in `.env` replaces the one found in `.env.example`.
-
 Open Bash in the VSCode terminal and run `make publish-dev`. Uncomment the `publish-prod` command in the [Makefile](./Makefile) and run `make publish-prod`.
+
+Before the publish, the solution creates an `apim_artifacts` folder for you. You can inspect the files that are used if you wish.
 
 #### 2) Publish via GitHub Actions
 
@@ -102,8 +102,6 @@ Create a new `prod` environment using the same settings but remembering to use t
 ##### Run the Publisher Pipeline
 
 The publisher pipeline will apply the API Management configuration in the main branch to both the dev and prod APIM instances. 
-
-Ensure hardcoded `{SUBSCRIPTION_ID}` values have been replaced with your subscription id and the prefix used in `.env` replaces the one found in `.env.example`.
 
 Navigate to the Actions blade in the GitHub repository and run the Publisher pipeline. Confirm that the changes made to the dev APIM instance in the Azure portal cascaded successfully to the prod APIM instance.
 

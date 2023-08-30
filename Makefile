@@ -38,17 +38,28 @@ extract-prod: ## 📤 Export the development API Management instance to a temp l
 		&& export AZURE_RESOURCE_GROUP_NAME=${PROD_RESOURCE_GROUP_NAME} \
 		&& extractor
 
-publish-dev: ## 📤 Publish to the development API Management instance
+publish-dev: artifacts-dev ## 📤 Publish to the development API Management instance
 	@echo -e "\e[34m$@\e[0m" || true
-	@export API_MANAGEMENT_SERVICE_OUTPUT_FOLDER_PATH=apimartifacts \
+	@export API_MANAGEMENT_SERVICE_OUTPUT_FOLDER_PATH=apim_artifacts \
 		&& export API_MANAGEMENT_SERVICE_NAME=${DEV_APIM_NAME} \
 		&& export AZURE_RESOURCE_GROUP_NAME=${DEV_RESOURCE_GROUP_NAME} \
+		&& export CONFIGURATION_YAML_PATH="./apim_artifacts/configuration.dev.yaml" \
 		&& publisher
 
-# publish-prod: ## 📤 Publish to the production API Management instance
+# publish-prod: artifacts-prod ## 📤 Publish to the production API Management instance
 # 	@echo -e "\e[34m$@\e[0m" || true
-# 	@export API_MANAGEMENT_SERVICE_OUTPUT_FOLDER_PATH=apimartifacts \
+# 	@export API_MANAGEMENT_SERVICE_OUTPUT_FOLDER_PATH=apim_artifacts \
 # 		&& export API_MANAGEMENT_SERVICE_NAME=${PROD_APIM_NAME} \
 # 		&& export AZURE_RESOURCE_GROUP_NAME=${PROD_RESOURCE_GROUP_NAME} \
-# 		&& export CONFIGURATION_YAML_PATH="./configuration.prod.yaml" \
+# 		&& export CONFIGURATION_YAML_PATH="./apim_artifacts/configuration.prod.yaml" \
 # 		&& publisher
+
+artifacts-dev: ## ⚙️ Create APIM Artifacts based on environment variables
+	@echo -e "\e[34m$@\e[0m" || true
+	@export API_MANAGEMENT_SERVICE_NAME=${DEV_APIM_NAME} \
+		&& ./scripts/create_apimartifacts.sh
+
+artifacts-prod: ## ⚙️ Create APIM Artifacts based on environment variables
+	@echo -e "\e[34m$@\e[0m" || true
+	@export API_MANAGEMENT_SERVICE_NAME=${PROD_APIM_NAME} \
+		&& ./scripts/create_apimartifacts.sh
