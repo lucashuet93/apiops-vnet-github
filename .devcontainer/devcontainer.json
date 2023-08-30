@@ -37,7 +37,9 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"hediet.vscode-drawio"
+				"hediet.vscode-drawio",
+				"github.vscode-pull-request-github",
+				"ms-azuretools.vscode-apimanagement"
 			]
 		}
 	}
