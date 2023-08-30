@@ -75,4 +75,4 @@ Several GitHub Issues have been created to implement the proposed design:
 
 The application of API Management revisions by API Ops currently has issues logged against it. The revision issue should be fixed directly on the API Ops repository or worked around if a suitable option exists. The following issue has been logged to track this work:
 
-- [Ensure APIM revisions can be published](https://github.com/lucashuet93/apiops-vnet-github/issues/38)
+- [Ensure APIM revisions can be published](https://github.com/lucashuet93/apiops-vnet-github/issues/46)
