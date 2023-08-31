@@ -2,7 +2,6 @@
   "properties": {
     "apiRevision": "1",
     "apiVersion": "v3",
-    "apiVersionSetId": "<WILL BE REPLACED BY CREATING ARTIFACTS>",
     "authenticationSettings": {},
     "contact": {
       "email": "apiteam@swagger.io"

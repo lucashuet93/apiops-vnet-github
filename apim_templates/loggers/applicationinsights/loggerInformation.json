@@ -5,7 +5,6 @@
     },
     "description": "A logger originally created in the dev instance",
     "isBuffered": true,
-    "loggerType": "applicationInsights",
-    "resourceId": "<WILL BE REPLACED BY CREATING ARTIFACTS>"
+    "loggerType": "applicationInsights"
   }
 }
