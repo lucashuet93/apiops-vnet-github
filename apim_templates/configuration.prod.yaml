@@ -39,3 +39,9 @@ apis:
     properties:
       displayName: "Swagger Petstore V3"
       apiVersionSetId: "/subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/${PROD_RESOURCE_GROUP_NAME}/providers/Microsoft.ApiManagement/service/${PROD_APIM_NAME}/apiVersionSets/swagger-petstore"  
+    diagnostics:
+      - name: applicationinsights
+        properties:
+          verbosity: Error
+          # loggerId must match the name of the logger above, in this case applicationinsights
+          loggerId: "/subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/${PROD_RESOURCE_GROUP_NAME}/providers/Microsoft.ApiManagement/service/${PROD_APIM_NAME}/loggers/applicationinsights"
