@@ -43,7 +43,7 @@ ingress and will be available for APIm by urls:
 
 The [API Management configuration](./apimartifacts/) contains 3 versions of the [Swagger Petstore API](https://petstore.swagger.io). The separate versions use slightly different versions of the Swagger Petstore Open API spec and thus expose different endpoints/functionalities. The Swagger Petstore is stored as an API Management backend and each API version includes a `<set-backend-service/>` policy that references it. The three API versions are all added to the same `swagger-petstore` Product.
 
-The Application Insights Instrumentation Key is stored as a Key Vault secret, which is referenced by the API Management `Logger-Credentials` named value. API Management contains a Logger resource that connects to the Application Insights resource via the `Logger-Credentials` named value, and sends diagnostics to Log Analytics.
+The Application Insights Instrumentation Key is stored as a Key Vault secret, which is referenced by the API Management `Logger-Credentials` named value. API Management contains a Logger resource that connects to the Application Insights resource via the `Logger-Credentials` named value, and sends diagnostics to Log Analytics. Diagnostic settings are applied to all APIs, and `v3` of the Swagger Petstore demonstrates diagnostic settings applied to a specific API.
 
 The values stored in the base API Management configuration correspond to the dev environment. Importantly, when the configuration is applied to the prod environment, API Management should connect to the production environment's supporting resources, not the ones in the dev environment. The [configuration.prod.yaml](./configuration.prod.yaml) file is used to override resource IDs to point at the prod environment's Key Vault, Log Analytics, and Application Insights resources. It additionally contains overrides for the Swagger Petstore backend, but the same url is currently used for both environments.
 
@@ -59,13 +59,21 @@ As new versions of a spec become available, new versions or revisions to an exis
 
 When a new version of a spec is released, a decision must be made [whether the change is breaking or not](https://learn.microsoft.com/en-us/azure/api-management/api-management-versions#versions-and-revisions). If the change is breaking, a new folder should be created in `/apim_templates/apis` that corresponds to the next available **version**. For the Swagger Petstore API, a new folder named `swagger-petstore-v4` would be created. If the change is not breaking, a new folder should be created in `/apim_templates/apis` that corresponds to the next available **revision** for the version that the spec targets. For the Swagger Petstore API, if the spec referred to a revision to `v3` of the API, a new folder named `swagger-petstore-v3;rev=2` would be created. A subsequent revision would result in a new folder named `swagger-petstore-v3;rev=3`.
 
-API Ops expects each API folder to contain the following files:
+API Ops expects each API folder will contain the following files:
 
 - `apiInformation.json`, which contains the API configuration data
-- `policy.xml`, which contains the API Policy applied to all API Operations
 - `specification.yaml`, which contains the Open API Spec for the API
 
-The `specification.yaml` file for a new version or revision will be the spec that is released by the backend API team. The `apiInformation.json` and `policy.xml` files from the previous versions or revisions should be used as templates to build the `apiInformation.json` and `policy.xml` files necessary for the newly created `/apim_templates/apis` folder. Generally, a new version's `apiInformation.json` will be nearly identical to the previous version's `apiInformation.json` file, with the `apiVersion` property updated. Similarly, a new revision's `apiInformation.json` will be nearly identical to the previous revision's `apiInformation.json` file, with the `apiRevision`, `apiRevisionDescription`, and `isCurrent` properties updated (only one revision may be current for each version). Additional properties may be updated, if necessary.
+Each API folder may optionally contain the following files:
+
+- `policy.xml`, which contains the API Policy applied to all API Operations
+- `/diagnostics`, which contains the API Diagnostic configuration data
+
+> **_NOTE:_** The API Ops tool may support additional API scoped resources in the future, which may allow for other folders or files within the `/apim_templates/apis` directories. Check the [supported artifacts](https://azure.github.io/apiops/apiops/1-supportedScenarios/#supported--2022-09-01) for an up to date list.
+
+The `specification.yaml` file for a new version or revision will be the spec that is released by the backend API team. The `apiInformation.json` file from the previous version or revision should be used as a template to build the `apiInformation.json` file necessary for the newly created `/apim_templates/apis` folder. Generally, a new version's `apiInformation.json` will be nearly identical to the previous version's `apiInformation.json` file, with the `apiVersion` property updated. Similarly, a new revision's `apiInformation.json` will be nearly identical to the previous revision's `apiInformation.json` file, with the `apiRevision`, `apiRevisionDescription`, and `isCurrent` properties updated (only one revision may be current for each version). Additional properties may be updated, if necessary.
+
+The `policy.xml` and `/diagnostics` folder are optional but found in many APIs. Each of the 3 Swagger Petstore versions includes a `policy.xml` file and `v3` includes a `diagnostics` folder. Like `apiInformation.json`, the previous revision or version should be used as a template for creation of these files in the newly created `/apim_templates/apis` folder. `policy.xml` and the `/diagnostics` folder's files will often be completely identical between versions/revisions.
 
 In addition to the APIM API configuration itself, the API may need to be associated with existing Products. API Ops Products are stored in the `/apim_templates/products` folder, where each Product has it's own directory that corresponds to its name. API Ops uses a few files to define Product configuration, but uses the `/apim_templates/products/{PRODUCT_NAME}/apis.json` file to set the APIs the Product should be associated with. Each `apis.json` file contains an array of API names that correspond to the folders in `/apim_templates/apis`. The name of the newly created `/apim_templates/apis` folder should be added to `apis.json` for each of the Products the new API version/revision should be associated with.
 
@@ -74,8 +82,9 @@ The `backends`, `diagnostics`, `loggers`, and `named values` folders in `/apim_t
 In total, when a new version or revision is created, a new folder should be created in `/apim_templates/apis` that includes the following files:
 
 - `/apis/{API_NAME}/apiInformation.json`
-- `/apis/{API_NAME}/policy.xml`
 - `/apis/{API_NAME}/specification.yaml`
+- `/apis/{API_NAME}/policy.xml` (Optional)
+- `/apis/{API_NAME}/diagnostics/...` (Optional)
 
 And the `apis.json` file should be updated for each associated Product:
 
