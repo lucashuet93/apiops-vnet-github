@@ -1,0 +1,9 @@
+{
+  "properties": {
+    "approvalRequired": false,
+    "description": "A product defines a set of APIs that are available for a specific customer. A product can be published to one or more environments.",
+    "displayName": "Customer A",
+    "state": "published",
+    "subscriptionRequired": true
+  }
+}

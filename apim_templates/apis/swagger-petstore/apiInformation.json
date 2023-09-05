@@ -17,7 +17,6 @@
       "http",
       "https"
     ],
-    "serviceUrl": "https://petstore.swagger.io/v2",
     "subscriptionKeyParameterNames": {
       "header": "Ocp-Apim-Subscription-Key",
       "query": "subscription-key"

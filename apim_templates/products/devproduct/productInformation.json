@@ -1,9 +1,0 @@
-{
-  "properties": {
-    "approvalRequired": false,
-    "description": "A product originally created in the dev instance",
-    "displayName": "devProduct",
-    "state": "published",
-    "subscriptionRequired": true
-  }
-}
