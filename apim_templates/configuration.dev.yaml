@@ -29,16 +29,20 @@ apis:
   - name: swagger-petstore
     properties:
       displayName: "Swagger Petstore V1"
-      apiVersionSetId: "/subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/${DEV_RESOURCE_GROUP_NAME}/providers/Microsoft.ApiManagement/service/${DEV_APIM_NAME}/apiVersionSets/swagger-petstore" 
+      apiVersionSetId: "/subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/${DEV_RESOURCE_GROUP_NAME}/providers/Microsoft.ApiManagement/service/${DEV_APIM_NAME}/apiVersionSets/connector1" 
+      serviceUrl: "https://petstore.swagger.io/v2"
   - name: swagger-petstore-v2
     properties:
       displayName: "Swagger Petstore V2"
-      apiVersionSetId: "/subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/${DEV_RESOURCE_GROUP_NAME}/providers/Microsoft.ApiManagement/service/${DEV_APIM_NAME}/apiVersionSets/swagger-petstore" 
+      apiVersionSetId: "/subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/${DEV_RESOURCE_GROUP_NAME}/providers/Microsoft.ApiManagement/service/${DEV_APIM_NAME}/apiVersionSets/connector1" 
+      serviceUrl: "https://petstore.swagger.io/v2"
   - name: swagger-petstore-v3
     properties:
       displayName: "Swagger Petstore V3"
-      apiVersionSetId: "/subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/${DEV_RESOURCE_GROUP_NAME}/providers/Microsoft.ApiManagement/service/${DEV_APIM_NAME}/apiVersionSets/swagger-petstore"
-  - name: top_stories_ny
+      apiVersionSetId: "/subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/${DEV_RESOURCE_GROUP_NAME}/providers/Microsoft.ApiManagement/service/${DEV_APIM_NAME}/apiVersionSets/connector1"
+      serviceUrl: "https://petstore.swagger.io/v2"
+  - name: different-petstore
     properties:
-      displayName: "NY Top Stories"
-      apiVersionSetId: "/subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/${DEV_RESOURCE_GROUP_NAME}/providers/Microsoft.ApiManagement/service/${DEV_APIM_NAME}/apiVersionSets/top_stories_ny"
+      displayName: "Different Petstore"
+      apiVersionSetId: "/subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/${DEV_RESOURCE_GROUP_NAME}/providers/Microsoft.ApiManagement/service/${DEV_APIM_NAME}/apiVersionSets/connector2"
+      serviceUrl: "https://petstore.swagger.io/v2"
