@@ -22,7 +22,7 @@ diagnostics:
     properties:
       loggerId: "/subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/${DEV_RESOURCE_GROUP_NAME}/providers/Microsoft.ApiManagement/service/${DEV_APIM_NAME}/loggers/azuremonitor"
 backends:
-  - name: swagger-petstore
+  - name: k8s-cluster
     properties:
       url: "https://petstore.swagger.io/v2"
 apis:
@@ -37,4 +37,8 @@ apis:
   - name: swagger-petstore-v3
     properties:
       displayName: "Swagger Petstore V3"
-      apiVersionSetId: "/subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/${DEV_RESOURCE_GROUP_NAME}/providers/Microsoft.ApiManagement/service/${DEV_APIM_NAME}/apiVersionSets/swagger-petstore"  
+      apiVersionSetId: "/subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/${DEV_RESOURCE_GROUP_NAME}/providers/Microsoft.ApiManagement/service/${DEV_APIM_NAME}/apiVersionSets/swagger-petstore"
+  - name: top_stories_ny
+    properties:
+      displayName: "NY Top Stories"
+      apiVersionSetId: "/subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/${DEV_RESOURCE_GROUP_NAME}/providers/Microsoft.ApiManagement/service/${DEV_APIM_NAME}/apiVersionSets/top_stories_ny"

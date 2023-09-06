@@ -13,7 +13,7 @@
 <policies>
 	<inbound>
 		<base />
-		<set-backend-service backend-id="swagger-petstore" />
+		<set-backend-service backend-id="k8s-cluster" />
 	</inbound>
 	<backend>
 		<base />
