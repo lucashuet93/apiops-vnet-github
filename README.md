@@ -83,6 +83,10 @@ And the `apis.json` file should be updated for each associated Product:
 
 Once the new folder and files are added and updated, the new configuration can be published to API Management.
 
+## Decisions made
+The following decisions have been made around this sample repository
+- [Service Level vs API Level Observability](./docs/adr-01.md)
+
 ## Running the Project
 
 Terraform is used to deploy the supporting infrastructure, including the API Management instances, and API Ops handles configuration promotion from the development to production environment.
