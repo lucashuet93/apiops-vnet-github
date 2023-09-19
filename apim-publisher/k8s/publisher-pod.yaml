@@ -1,0 +1,25 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: apim-publisher-pod
+  namespace: apim-be-dev
+spec:
+  containers:
+    - name: test
+      image: gcacrapim.azurecr.io/apim-publisher:4.9.0-4
+      stdin: true
+      tty: true
+      env:
+        - name: API_MANAGEMENT_SERVICE_OUTPUT_FOLDER_PATH
+          value: /apimartifacts
+      envFrom:
+        - secretRef:
+            name: apim-access
+      volumeMounts:
+        - mountPath: /apimartifacts
+          name: apimartifacts
+  volumes:
+    - name: apimartifacts
+      configMap:
+        name: apim-config
